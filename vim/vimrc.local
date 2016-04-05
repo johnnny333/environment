@@ -1,0 +1,23 @@
+set autoindent
+set ruler
+set rulerformat=%40(%y/%{&fenc}/%{&ff}%=%l,%c%V%5(%P%)%)
+set number 
+set hlsearch
+
+set backup
+set writebackup
+au BufWritePre * let &backupext = '%' . substitute(expand("%:p:h"), "/" , "%" , "g") . "%" . strftime("%Y.%m.%d.%H.%M.%S")
+      au VimLeave * !cp % ~/.vim_backups/$(echo %:p | sed 's/\(.*\/\)\(.*\)/\2\/\1/g' | sed 's/\//\%/g')$(date +\%Y.\%m.\%d.\%H.\%M.\%S).wq
+        set backupdir=~/.vim_backups/
+
+set fileformat=unix
+set fileencoding=utf-8
+set termencoding=utf-8
+"set encoding=utf-8
+
+"" Press Space to turn off highlighting and clear any message already
+"displayed.
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+:set wrap
+:set linebreak
